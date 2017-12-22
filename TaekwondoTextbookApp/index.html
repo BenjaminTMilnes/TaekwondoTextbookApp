@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-    <div class="textbook" ng-controller="TextbookController">
+    <div class="textbook" ng-controller="TextbookController" tabindex="0" ng-keypress="keyPress($event);">
         <h1 class="textbook-title">Taekwondo Terminology</h1>
         <div class="pages">
             <div class="page" ng-show="page == 1">
