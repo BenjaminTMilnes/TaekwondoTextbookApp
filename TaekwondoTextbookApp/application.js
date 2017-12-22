@@ -2,7 +2,7 @@
 
 application.controller("TextbookController", ["$scope", function ($scope) {
 
-    $scope.numberOfPages = 2;
+    $scope.numberOfPages = 3;
     $scope.page = 1;
 
     $scope.previousPage = function () {
