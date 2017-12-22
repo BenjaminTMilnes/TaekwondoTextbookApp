@@ -1,14 +1,18 @@
 ﻿<!DOCTYPE html>
 <html ng-app="TaekwondoTextbookApp">
 <head>
-    <title></title>
+    <title>Taekwondo Terminology</title>
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script type="text/javascript" src="application.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i&amp;subset=greek,greek-ext,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
     <div class="textbook" ng-controller="TextbookController">
-        <h1>Taekwondo Terminology</h1>
+        <h1 class="textbook-title">Taekwondo Terminology</h1>
         <div class="pages">
             <div class="page" ng-show="page == 1">
                 <h2>Prepositions</h2>
@@ -29,11 +33,15 @@
                         </tr>
                     </tbody>
                 </table>
-          <button ng-click="nextPage();">Next Page</button>
             </div>
-         <div class="page" ng-show="page == 2">
-                 <h3>Vocabulary Test</h3>
-         </div>
+            <div class="page" ng-show="page == 2">
+                <h3>Vocabulary Test</h3>
+            </div>
+            <div class="page-buttons">
+                <button class="previous-page-button" ng-show="page > 1" ng-click="previousPage();">&larr; Previous Page</button>
+                <button class="next-page-button" ng-show="page < numberOfPages" ng-click="nextPage();">Next Page &rarr;</button>
+            </div>
+            <div class="page-number">{{page}}</div>
         </div>
     </div>
 </body>
