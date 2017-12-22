@@ -80,16 +80,17 @@ h1, h2, h3, h4, h5, h6, p {
     float: right;
 }
 
-.vocabulary-table {
+.vocabulary-table, .vocabulary-multiple-choice-test {
     font-size: 27px;
     border-collapse: collapse;
     margin: 70px auto;
 }
 
-    .vocabulary-table tr:nth-child(odd) {
+    .vocabulary-table tbody tr:nth-child(odd), .vocabulary-multiple-choice-test tbody tr:nth-child(odd) {
         background-color: #F4F4F4;
     }
 
-    .vocabulary-table td {
+    .vocabulary-table td, .vocabulary-table th, .vocabulary-multiple-choice-test td, .vocabulary-multiple-choice-test th {
         padding: 10px 27px;
+        text-align: left;
     }

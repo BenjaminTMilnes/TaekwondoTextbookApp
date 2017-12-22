@@ -37,6 +37,22 @@
             </div>
             <div class="page" ng-show="page == 2">
                 <h3>Vocabulary Test</h3>
+                <p>Choose the correct Korean term for each English term below.</p>
+                <table class="vocabulary-multiple-choice-test">
+                    <thead>
+                        <tr>
+                            <th>English</th>
+                            <th colspan="4">Korean</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="question in exercise1Data.questions">
+                            <td>{{question.term}}</td>
+                            <td>{{question.correctAnswer}}</td>
+                            <td ng-repeat="answer in question.incorrectAnswers">{{answer}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="page" ng-show="page == 3">
                 <h3>New Vocabulary</h3>
