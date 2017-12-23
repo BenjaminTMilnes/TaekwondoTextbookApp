@@ -45,13 +45,39 @@ function convertExerciseData(exerciseData) {
     return exerciseData;
 }
 
+var vocabularyList1 = [
+    { korean: { hangeul: "앞", romanisation: "ap" }, english: "front" },
+    { korean: { hangeul: "옆", romanisation: "yeop" }, english: "side" },
+    { korean: { hangeul: "뒷", romanisation: "dwit" }, english: "rear, behind" }];
+
+var vocabularyList2 = [
+    { korean: { hangeul: "안", romanisation: "an" }, english: "inside, inner" },
+    { korean: { hangeul: "바깥", romanisation: "bakkat" }, english: "outside, outer" },
+    { korean: { hangeul: "밑", romanisation: "mit" }, english:"under" }];
+
+application.directive("vocabularyTable", function () {
+    return {
+        restrict: "E",
+        scope: {
+            items: "=data"
+        },
+        templateUrl: "vocabulary-table.html",
+        link: function (scope) {
+
+        }
+    };
+});
+
 application.controller("TextbookController", ["$scope", function ($scope) {
 
     $scope.numberOfPages = 3;
-    $scope.page = 2;
+    $scope.page = 1;
 
     $scope.exercise1Data = convertExerciseData(exercise1Data);
     $scope.showResponses = false;
+
+    $scope.vocabularyList1 = vocabularyList1;
+    $scope.vocabularyList2 = vocabularyList2;
 
     $scope.selectAnswer = function (question_index, answer_index) {
         for (var i = 0; i < $scope.exercise1Data.questions[question_index].answers.length; i++) {
