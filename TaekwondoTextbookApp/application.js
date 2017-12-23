@@ -1,5 +1,23 @@
 ﻿var application = angular.module("TaekwondoTextbookApp", []);
 
+
+function reorderRandomly(array) {
+    var currentIndex = array.length;
+    var randomIndex = 0;
+    var temporaryValue;
+
+    while (currentIndex > 0) {
+        randomIndex = Math.round(Math.random() * (currentIndex - 1));
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 var exercise1Data = {
     type: "vocabulary multiple choice",
     questions: [
@@ -8,12 +26,58 @@ var exercise1Data = {
         { term: "side", correctAnswer: "yeop", incorrectAnswers: ["ap", "an", "mit"] }]
 };
 
+function convertExerciseData(exerciseData) {
+    for (var i = 0; i < exerciseData.questions.length; i++) {
+        var question = exerciseData.questions[i];
+
+        question.answers = [];
+        question.answers.push({ text: question.correctAnswer, isCorrect: true, isSelected: false });
+
+        for (var j = 0; j < question.incorrectAnswers.length; j++) {
+            var incorrectAnswer = question.incorrectAnswers[j];
+
+            question.answers.push({ text: incorrectAnswer, isCorrect: false, isSelected: false });
+        }
+
+        question.answers = reorderRandomly(question.answers);
+    }
+
+    return exerciseData;
+}
+
 application.controller("TextbookController", ["$scope", function ($scope) {
 
     $scope.numberOfPages = 3;
-    $scope.page = 1;
+    $scope.page = 2;
 
-    $scope.exercise1Data = exercise1Data;
+    $scope.exercise1Data = convertExerciseData(exercise1Data);
+    $scope.showResponses = false;
+
+    $scope.selectAnswer = function (question_index, answer_index) {
+        for (var i = 0; i < $scope.exercise1Data.questions[question_index].answers.length; i++) {
+            $scope.exercise1Data.questions[question_index].answers[i].isSelected = false;
+            if (i == answer_index) {
+                $scope.exercise1Data.questions[question_index].answers[i].isSelected = true;
+            }
+        }
+    }
+
+    $scope.checkAnswers = function () {
+        for (var i = 0; i < $scope.exercise1Data.questions.length; i++) {
+            var question = $scope.exercise1Data.questions[i];
+            question.gotAnswerCorrect = false;
+
+            for (var j = 0; j < question.answers.length; j++) {
+                var answer = question.answers[j];
+
+                if (answer.isCorrect && answer.isSelected) {
+                    question.gotAnswerCorrect = true;
+                    break;
+                }
+            }
+        }
+        $scope.showResponses = true;
+    }
 
     $scope.previousPage = function () {
         if ($scope.page <= 1) {
