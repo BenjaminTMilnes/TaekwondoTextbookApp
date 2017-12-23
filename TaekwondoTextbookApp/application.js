@@ -53,7 +53,7 @@ var vocabularyList1 = [
 var vocabularyList2 = [
     { korean: { hangeul: "안", romanisation: "an" }, english: "inside, inner" },
     { korean: { hangeul: "바깥", romanisation: "bakkat" }, english: "outside, outer" },
-    { korean: { hangeul: "밑", romanisation: "mit" }, english:"under" }];
+    { korean: { hangeul: "밑", romanisation: "mit" }, english: "under" }];
 
 application.directive("vocabularyTable", function () {
     return {
@@ -68,6 +68,49 @@ application.directive("vocabularyTable", function () {
     };
 });
 
+application.directive("vocabularyMultipleChoiceExercise", function () {
+    return {
+        restrict: "E",
+        scope: {
+            data: "=data"
+        },
+        templateUrl: "vocabulary-multiple-choice-exercise.html",
+        link: function (scope) {
+
+            scope.selectAnswer = function (question_index, answer_index) {
+                var question = scope.data.questions[question_index];
+
+                for (var i = 0; i < question.answers.length; i++) {
+                    var answer = question.answers[i];
+
+                    answer.isSelected = false;
+                    if (i == answer_index) {
+                        answer.isSelected = true;
+                    }
+                }
+            }
+
+            scope.checkAnswers = function () {
+                for (var i = 0; i < scope.data.questions.length; i++) {
+                    var question = scope.data.questions[i];
+                    question.gotAnswerCorrect = false;
+
+                    for (var j = 0; j < question.answers.length; j++) {
+                        var answer = question.answers[j];
+
+                        if (answer.isCorrect && answer.isSelected) {
+                            question.gotAnswerCorrect = true;
+                            break;
+                        }
+                    }
+                }
+
+                scope.showResponses = true;
+            }
+        }
+    };
+});
+
 application.controller("TextbookController", ["$scope", function ($scope) {
 
     $scope.numberOfPages = 3;
@@ -78,32 +121,6 @@ application.controller("TextbookController", ["$scope", function ($scope) {
 
     $scope.vocabularyList1 = vocabularyList1;
     $scope.vocabularyList2 = vocabularyList2;
-
-    $scope.selectAnswer = function (question_index, answer_index) {
-        for (var i = 0; i < $scope.exercise1Data.questions[question_index].answers.length; i++) {
-            $scope.exercise1Data.questions[question_index].answers[i].isSelected = false;
-            if (i == answer_index) {
-                $scope.exercise1Data.questions[question_index].answers[i].isSelected = true;
-            }
-        }
-    }
-
-    $scope.checkAnswers = function () {
-        for (var i = 0; i < $scope.exercise1Data.questions.length; i++) {
-            var question = $scope.exercise1Data.questions[i];
-            question.gotAnswerCorrect = false;
-
-            for (var j = 0; j < question.answers.length; j++) {
-                var answer = question.answers[j];
-
-                if (answer.isCorrect && answer.isSelected) {
-                    question.gotAnswerCorrect = true;
-                    break;
-                }
-            }
-        }
-        $scope.showResponses = true;
-    }
 
     $scope.previousPage = function () {
         if ($scope.page <= 1) {

@@ -23,26 +23,7 @@
             <div class="page" ng-show="page == 2">
                 <h3>Vocabulary Test</h3>
                 <p>Choose the correct Korean term for each English term below.</p>
-                <table class="vocabulary-multiple-choice-test">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>English</th>
-                            <th colspan="4">Korean</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="question in exercise1Data.questions">
-                            <td>{{$index + 1}}.)</td>
-                            <td>{{question.term}}</td>
-                            <td ng-repeat="answer in question.answers"><span class="answer" ng-class="answer.isSelected? 'answer answer-selected': 'answer'" ng-click="selectAnswer($parent.$index, $index)">{{answer.text}}</span></td>
-                            <td style="min-width: 100px;"><span ng-show="showResponses == true"><span ng-show="question.gotAnswerCorrect" style="color:forestgreen;">Correct</span><span ng-show="!question.gotAnswerCorrect" style="color:orange;">Incorrect</span></span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="exercise-control-buttons">
-                    <button class="check-answers-button" ng-click="checkAnswers();">Check answers</button>
-                </div>
+                <vocabulary-multiple-choice-exercise data="exercise1Data"></vocabulary-multiple-choice-exercise>
             </div>
             <div class="page" ng-show="page == 3">
                 <h3>New Vocabulary</h3>
