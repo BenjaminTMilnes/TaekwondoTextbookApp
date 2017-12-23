@@ -1,0 +1,26 @@
+﻿{
+  "name": "vocabularyList1",
+  "items": [
+    {
+      "korean": {
+        "hangeul": "앞",
+        "romanisation": "ap"
+      },
+      "english": "front"
+    },
+    {
+      "korean": {
+        "hangeul": "옆",
+        "romanisation": "yeop"
+      },
+      "english": "side"
+    },
+    {
+      "korean": {
+        "hangeul": "뒷",
+        "romanisation": "dwit"
+      },
+      "english": "rear, behind"
+    }
+  ]
+}

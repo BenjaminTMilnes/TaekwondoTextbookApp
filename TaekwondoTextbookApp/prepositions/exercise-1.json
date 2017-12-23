@@ -1,0 +1,21 @@
+﻿{
+  "name": "exercise1",
+  "type": "vocabulary multiple choice",
+  "questions": [
+    {
+      "term": "front",
+      "correctAnswer": "ap",
+      "incorrectAnswers": [ "yeop", "dwit", "an" ]
+    },
+    {
+      "term": "rear",
+      "correctAnswer": "dwit",
+      "incorrectAnswers": [ "ap", "yeop", "an" ]
+    },
+    {
+      "term": "side",
+      "correctAnswer": "yeop",
+      "incorrectAnswers": [ "ap", "an", "mit" ]
+    }
+  ]
+}

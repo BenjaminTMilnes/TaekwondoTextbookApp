@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="prepositions\exercise-1.json" />
+    <Content Include="prepositions\vocabulary-list-1.json" />
+    <Content Include="prepositions\vocabulary-list-2.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

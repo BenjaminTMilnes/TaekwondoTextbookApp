@@ -1,6 +1,5 @@
 ﻿var application = angular.module("TaekwondoTextbookApp", []);
 
-
 function reorderRandomly(array) {
     var currentIndex = array.length;
     var randomIndex = 0;
@@ -17,14 +16,6 @@ function reorderRandomly(array) {
 
     return array;
 }
-
-var exercise1Data = {
-    type: "vocabulary multiple choice",
-    questions: [
-        { term: "front", correctAnswer: "ap", incorrectAnswers: ["yeop", "dwit", "an"] },
-        { term: "rear", correctAnswer: "dwit", incorrectAnswers: ["ap", "yeop", "an"] },
-        { term: "side", correctAnswer: "yeop", incorrectAnswers: ["ap", "an", "mit"] }]
-};
 
 function convertExerciseData(exerciseData) {
     for (var i = 0; i < exerciseData.questions.length; i++) {
@@ -44,16 +35,6 @@ function convertExerciseData(exerciseData) {
 
     return exerciseData;
 }
-
-var vocabularyList1 = [
-    { korean: { hangeul: "앞", romanisation: "ap" }, english: "front" },
-    { korean: { hangeul: "옆", romanisation: "yeop" }, english: "side" },
-    { korean: { hangeul: "뒷", romanisation: "dwit" }, english: "rear, behind" }];
-
-var vocabularyList2 = [
-    { korean: { hangeul: "안", romanisation: "an" }, english: "inside, inner" },
-    { korean: { hangeul: "바깥", romanisation: "bakkat" }, english: "outside, outer" },
-    { korean: { hangeul: "밑", romanisation: "mit" }, english: "under" }];
 
 application.directive("vocabularyTable", function () {
     return {
@@ -111,16 +92,33 @@ application.directive("vocabularyMultipleChoiceExercise", function () {
     };
 });
 
-application.controller("TextbookController", ["$scope", function ($scope) {
+application.controller("TextbookController", ["$scope", "$http", function ($scope, $http) {
 
     $scope.numberOfPages = 3;
     $scope.page = 1;
 
-    $scope.exercise1Data = convertExerciseData(exercise1Data);
+    $scope.exercise1Data = {};
     $scope.showResponses = false;
 
-    $scope.vocabularyList1 = vocabularyList1;
-    $scope.vocabularyList2 = vocabularyList2;
+    $scope.vocabularyList1 = {};
+    $scope.vocabularyList2 = {};
+
+    $scope.getData = function () {
+
+        $http.get("prepositions/vocabulary-list-1.json").then(function (response) {
+            $scope.vocabularyList1 = response.data.items;
+        });
+
+        $http.get("prepositions/vocabulary-list-2.json").then(function (response) {
+            $scope.vocabularyList2 = response.data.items;
+        });
+
+        $http.get("prepositions/exercise-1.json").then(function (response) {
+            $scope.exercise1Data = convertExerciseData(response.data);
+        });
+    }
+
+    $scope.getData();
 
     $scope.previousPage = function () {
         if ($scope.page <= 1) {
