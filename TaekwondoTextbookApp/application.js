@@ -135,8 +135,13 @@ application.controller("TextbookController", ["$scope", "$http", function ($scop
     }
 
     $scope.keyPress = function (event) {
-        if (event.which == 13) {
+        if (event.which == 13 || event.which == 39) {
             $scope.nextPage();
+
+            event.preventDefault();
+        }
+        if (event.which == 37) {
+            $scope.previousPage();
 
             event.preventDefault();
         }
