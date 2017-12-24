@@ -92,6 +92,36 @@ application.directive("vocabularyMultipleChoiceExercise", function () {
     };
 });
 
+application.directive("vocabularyWrittenAnswerExercise", function () {
+    return {
+        restrict: "E",
+        scope: {
+            data: "=data"
+        },
+        templateUrl: "vocabulary-written-answer-exercise.html",
+        link: function (scope) {
+
+            scope.checkAnswers = function () {
+                for (var i = 0; i < scope.data.questions.length; i++) {
+                    var question = scope.data.questions[i];
+                    question.gotAnswerCorrect = false;
+
+                    for (var j = 0; j < question.correctAnswers.length; j++) {
+                        var correctAnswer = question.correctAnswers[j];
+
+                        if (question.givenAnswer == correctAnswer) {
+                            question.gotAnswerCorrect = true;
+                            break;
+                        }
+                    }
+                }
+
+                scope.showResponses = true;
+            }
+        }
+    };
+});
+
 application.directive("page", function () {
     return {
         restrict: "E",
@@ -117,8 +147,8 @@ application.directive("compile", ["$compile", function ($compile) {
 
 application.controller("TextbookController", ["$scope", "$http", function ($scope, $http) {
 
-    $scope.numberOfPages = 3;
-    $scope.page = 1;
+    $scope.numberOfPages = 5;
+    $scope.page = 4;
 
     $scope.pages = [];
     $scope.data = {};
@@ -155,6 +185,9 @@ application.controller("TextbookController", ["$scope", "$http", function ($scop
                     var exerciseData = convertExerciseData(response.data);
 
                     $scope.data[name] = exerciseData;
+                }
+                else if (response.data.type == "vocabulary written answer") {
+                    $scope.data[name] = response.data;
                 }
                 else {
                     $scope.data[name] = response.data.items;

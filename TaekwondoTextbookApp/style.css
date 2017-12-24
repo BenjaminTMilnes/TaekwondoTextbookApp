@@ -81,17 +81,17 @@ h1, h2, h3, h4, h5, h6, p {
     float: right;
 }
 
-.vocabulary-table, .vocabulary-multiple-choice-test {
+.vocabulary-table, .vocabulary-multiple-choice-test, .vocabulary-written-answer-test {
     font-size: 27px;
     border-collapse: collapse;
     margin: 70px auto;
 }
 
-    .vocabulary-table tbody tr:nth-child(odd), .vocabulary-multiple-choice-test tbody tr:nth-child(odd) {
+    .vocabulary-table tbody tr:nth-child(odd), .vocabulary-multiple-choice-test tbody tr:nth-child(odd), .vocabulary-written-answer-test tbody tr:nth-child(odd) {
         background-color: #F4F4F4;
     }
 
-    .vocabulary-table td, .vocabulary-table th, .vocabulary-multiple-choice-test td, .vocabulary-multiple-choice-test th {
+    .vocabulary-table td, .vocabulary-table th, .vocabulary-multiple-choice-test td, .vocabulary-multiple-choice-test th, .vocabulary-written-answer-test td, .vocabulary-written-answer-test th {
         padding: 10px 27px;
         text-align: left;
     }
@@ -99,6 +99,17 @@ h1, h2, h3, h4, h5, h6, p {
     .vocabulary-table td {
         min-width: 170px;
     }
+     .vocabulary-written-answer-test input[type=text]{
+            font-size: 27px;
+            font-family:inherit;
+             font-weight:inherit;
+             padding:4px;
+          border-top:none;
+          border-left:none;
+          border-right:none;
+          border-bottom:1px dashed #202020;
+           background-color:transparent;
+    outline:none;  }
 
 .answer {
     border: 1px dashed #A0A0A0;

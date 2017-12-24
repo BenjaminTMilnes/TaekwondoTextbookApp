@@ -1,0 +1,23 @@
+﻿{
+  "name": "exercise2",
+  "type": "vocabulary written answer",
+  "fromLanguage": "Korean",
+  "toLanguage": "English",
+  "questions": [
+    {
+      "term": "ap",
+      "correctAnswers": [ "front", "the front" ],
+      "caseSensitive": false
+    },
+    {
+      "term": "yeop",
+      "correctAnswers": [ "side", "the side" ],
+      "caseSensitive": false
+    },
+    {
+      "term": "dwit",
+      "correctAnswers": [ "rear", "the rear", "back", "the back", "behind", "the behind" ],
+      "caseSensitive": false
+    }
+  ]
+}

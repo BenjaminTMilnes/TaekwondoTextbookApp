@@ -1,0 +1,26 @@
+﻿<table class="vocabulary-written-answer-test">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{data.fromLanguage}}</th>
+            <th>{{data.toLanguage}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="question in data.questions">
+            <td>{{$index + 1}}.)</td>
+            <td>{{question.term}}</td>
+            <td><input type="text" class="answer-box" ng-model="question.givenAnswer" /></td>
+            <td style="min-width: 100px;">
+                <span ng-show="showResponses == true">
+                    <span ng-show="question.gotAnswerCorrect" style="color:forestgreen;">Correct</span>
+                    <span ng-show="!question.gotAnswerCorrect" style="color:orange;">Incorrect</span>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="exercise-control-buttons">
+    <button class="check-answers-button" ng-click="checkAnswers();">Check answers</button>
+</div>

@@ -1,4 +1,4 @@
 ﻿{
-  "pages": [ "page-1.html", "page-2.html", "page-3.html" ],
-  "data": [ "vocabulary-list-1.json", "vocabulary-list-2.json", "exercise-1.json" ]
+  "pages": [ "page-1.html", "page-2.html", "page-3.html", "page-4.html", "page-5.html" ],
+  "data": [ "vocabulary-list-1.json", "vocabulary-list-2.json", "exercise-1.json", "exercise-2.json" ]
 }

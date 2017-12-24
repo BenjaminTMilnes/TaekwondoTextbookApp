@@ -69,12 +69,15 @@
     <Content Include="packages.config" />
     <Content Include="page.html" />
     <Content Include="prepositions\exercise-1.json" />
-    <Content Include="prepositions\page-1.html" />
     <Content Include="prepositions\page-2.html" />
+    <Content Include="prepositions\page-1.html" />
     <Content Include="prepositions\page-3.html" />
+    <Content Include="prepositions\page-4.html" />
+    <Content Include="prepositions\page-5.html" />
     <Content Include="prepositions\vocabulary-list-1.json" />
     <Content Include="prepositions\vocabulary-list-2.json" />
     <Content Include="prepositions\part.json" />
+    <Content Include="prepositions\exercise-2.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,6 +91,7 @@
     <Content Include="style.css" />
     <Content Include="vocabulary-multiple-choice-exercise.html" />
     <Content Include="vocabulary-table.html" />
+    <Content Include="vocabulary-written-answer-exercise.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
