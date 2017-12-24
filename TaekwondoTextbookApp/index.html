@@ -4,31 +4,19 @@
     <title>Taekwondo Terminology</title>
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
     <script type="text/javascript" src="application.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i&amp;subset=greek,greek-ext,latin-ext" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body>
-    <div class="textbook" ng-controller="TextbookController" tabindex="0" ng-keydown="keyPress($event);">
+<body ng-controller="TextbookController" tabindex="0" ng-keydown="keyPress($event);">
+    <div class="textbook">
         <h1 class="textbook-title">Taekwondo Terminology</h1>
         <div class="pages">
-            <div class="page" ng-show="page == 1">
-                <h2>Prepositions</h2>
-                <p>Prepositions are words such as 'at', 'in', and 'on', which <strong>describe where one object is in relation to another</strong>. Many Korean terms for Taekwondo movements contain prepositions.</p>
-                <h3>New Vocabulary</h3>
-                <vocabulary-table data="vocabularyList1"></vocabulary-table>
-            </div>
-            <div class="page" ng-show="page == 2">
-                <h3>Vocabulary Test</h3>
-                <p>Choose the correct Korean term for each English term below.</p>
-                <vocabulary-multiple-choice-exercise data="exercise1Data"></vocabulary-multiple-choice-exercise>
-            </div>
-            <div class="page" ng-show="page == 3">
-                <h3>New Vocabulary</h3>
-                <p>Here are some more commonly-used prepositions.</p>
-                <vocabulary-table data="vocabularyList2"></vocabulary-table>
+            <div ng-repeat="page in pages">
+                <page ng-show="$parent.page == page.index" compile="page.html" class="page"></page>
             </div>
             <div class="page-buttons">
                 <button class="previous-page-button" ng-show="page > 1" ng-click="previousPage();">&larr; Previous Page</button>

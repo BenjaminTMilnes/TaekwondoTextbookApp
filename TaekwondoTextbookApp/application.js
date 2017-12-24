@@ -1,4 +1,4 @@
-﻿var application = angular.module("TaekwondoTextbookApp", []);
+﻿var application = angular.module("TaekwondoTextbookApp", ["ngSanitize"]);
 
 function reorderRandomly(array) {
     var currentIndex = array.length;
@@ -92,33 +92,78 @@ application.directive("vocabularyMultipleChoiceExercise", function () {
     };
 });
 
+application.directive("page", function () {
+    return {
+        restrict: "E",
+        scope: {
+        },
+        templateUrl: "page.html",
+        link: function (scope) {
+
+        }
+    };
+});
+
+application.directive("compile", ["$compile", function ($compile) {
+    return function (scope, element, attributes) {
+        scope.$watch(function (scope) {
+            return scope.$eval(attributes.compile);
+        }, function (value) {
+            element.html(value);
+            $compile(element.contents())(scope);
+        });
+    };
+}]);
+
 application.controller("TextbookController", ["$scope", "$http", function ($scope, $http) {
 
     $scope.numberOfPages = 3;
     $scope.page = 1;
 
-    $scope.exercise1Data = {};
-    $scope.showResponses = false;
+    $scope.pages = [];
+    $scope.data = {};
 
-    $scope.vocabularyList1 = {};
-    $scope.vocabularyList2 = {};
+    $scope.getPart = function () {
+        $http.get("prepositions/part.json").then(function (response) {
+            var part = response.data;
 
-    $scope.getData = function () {
+            $scope.getPages(part.pages);
+            $scope.getData(part.data);
 
-        $http.get("prepositions/vocabulary-list-1.json").then(function (response) {
-            $scope.vocabularyList1 = response.data.items;
-        });
-
-        $http.get("prepositions/vocabulary-list-2.json").then(function (response) {
-            $scope.vocabularyList2 = response.data.items;
-        });
-
-        $http.get("prepositions/exercise-1.json").then(function (response) {
-            $scope.exercise1Data = convertExerciseData(response.data);
+            console.log($scope.pages);
         });
     }
 
-    $scope.getData();
+    $scope.getPages = function (pages) {
+        for (var i = 0; i < pages.length; i++) {
+            $http.get("prepositions/" + pages[i]).then(function (response) {
+                var url = response.config.url;
+                var pageName = url.slice(13);
+                var index = pages.indexOf(pageName) + 1;
+
+                $scope.pages.push({ index: index, html: response.data });
+            });
+        }
+    }
+
+    $scope.getData = function (dataFiles) {
+        for (var i = 0; i < dataFiles.length; i++) {
+            $http.get("prepositions/" + dataFiles[i]).then(function (response) {
+                var name = response.data.name;
+
+                if (response.data.type == "vocabulary multiple choice") {
+                    var exerciseData = convertExerciseData(response.data);
+
+                    $scope.data[name] = exerciseData;
+                }
+                else {
+                    $scope.data[name] = response.data.items;
+                }
+            });
+        }
+    }
+
+    $scope.getPart();
 
     $scope.previousPage = function () {
         if ($scope.page <= 1) {
