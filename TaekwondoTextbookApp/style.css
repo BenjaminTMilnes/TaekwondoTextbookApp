@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6, p {
     }
 
     .vocabulary-table td, .vocabulary-table th, .vocabulary-multiple-choice-test td, .vocabulary-multiple-choice-test th, .vocabulary-written-answer-test td, .vocabulary-written-answer-test th {
-        padding: 10px 27px;
+        padding: 10px 17px;
         text-align: left;
     }
 

@@ -1,0 +1,23 @@
+﻿{
+  "name": "exercise4",
+  "type": "vocabulary written answer",
+  "fromLanguage": "English",
+  "toLanguage": "Korean",
+  "questions": [
+    {
+      "term": "under",
+      "correctAnswers": [ "mit", "밑" ],
+      "caseSensitive": false
+    },
+    {
+      "term": "inside",
+      "correctAnswers": [ "an", "안" ],
+      "caseSensitive": false
+    },
+    {
+      "term": "outside",
+      "correctAnswers": [ "bakkat", "pakkat", "바깥" ],
+      "caseSensitive": false
+    }
+  ]
+}

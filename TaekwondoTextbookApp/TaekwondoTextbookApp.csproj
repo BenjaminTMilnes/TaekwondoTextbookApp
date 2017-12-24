@@ -73,11 +73,15 @@
     <Content Include="prepositions\page-1.html" />
     <Content Include="prepositions\page-3.html" />
     <Content Include="prepositions\page-4.html" />
+    <Content Include="prepositions\page-7.html" />
+    <Content Include="prepositions\page-6.html" />
     <Content Include="prepositions\page-5.html" />
     <Content Include="prepositions\vocabulary-list-1.json" />
     <Content Include="prepositions\vocabulary-list-2.json" />
     <Content Include="prepositions\part.json" />
     <Content Include="prepositions\exercise-2.json" />
+    <Content Include="prepositions\exercise-3.json" />
+    <Content Include="prepositions\exercise-4.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

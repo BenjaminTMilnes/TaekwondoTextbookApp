@@ -1,0 +1,23 @@
+﻿{
+  "name": "exercise3",
+  "type": "vocabulary multiple choice",
+  "fromLanguage": "Korean",
+  "toLanguage": "English",
+  "questions": [
+    {
+      "term": "mit",
+      "correctAnswer": "under",
+      "incorrectAnswers": [ "inner", "outer", "rear" ]
+    },
+    {
+      "term": "an",
+      "correctAnswer": "inside",
+      "incorrectAnswers": [ "outside", "front", "under" ]
+    },
+    {
+      "term": "bakkat",
+      "correctAnswer": "outside",
+      "incorrectAnswers": [ "inside", "rear", "under" ]
+    }
+  ]
+}

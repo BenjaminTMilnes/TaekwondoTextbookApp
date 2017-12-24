@@ -147,7 +147,7 @@ application.directive("compile", ["$compile", function ($compile) {
 
 application.controller("TextbookController", ["$scope", "$http", function ($scope, $http) {
 
-    $scope.numberOfPages = 5;
+    $scope.numberOfPages = 7;
     $scope.page = 4;
 
     $scope.pages = [];

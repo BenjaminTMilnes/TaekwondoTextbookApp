@@ -1,6 +1,8 @@
 ﻿{
   "name": "exercise1",
   "type": "vocabulary multiple choice",
+  "fromLanguage": "English",
+  "toLanguage": "Korean",
   "questions": [
     {
       "term": "front",
